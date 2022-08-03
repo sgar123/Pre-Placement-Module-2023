@@ -1,0 +1,33 @@
+#include <bits/stdc++.h>
+using namespace std;
+void combinations(vector <int> &a , int &cur_sum , int idx , int &end , int &max_sum_possible)
+{
+    if(idx > end)
+        return;
+    cur_sum += a[idx];
+    if(cur_sum > max_sum_possible)
+        max_sum_possible = cur_sum;
+    for(int i = idx + 2 ; i <= end ; i++)
+        combinations(a , cur_sum , i , end , max_sum_possible);
+    cur_sum -= a[idx];
+    combinations(a , cur_sum , idx + 1 , end , max_sum_possible);
+    return;
+}
+int rob(vector <int> &a)
+{
+    int n = a.size();
+    if(n == 0)
+        return 0;
+    if(n == 1)
+        return a[0];
+    int max_sum_possible = 0 , cur_sum = 0 , end = n - 2;
+    combinations(a , cur_sum , 0 , end , max_sum_possible);
+    end++;
+    combinations(a , cur_sum , 1 , end , max_sum_possible);
+    return max_sum_possible;
+}
+int main()
+{
+    vector <int> a = {1 , 5 , 4 , 2};
+    cout << rob(a) << '\n';
+}
