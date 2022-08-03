@@ -1,0 +1,21 @@
+#include<iostream>
+#include<algorithm>
+using namespace std;
+
+bool compare(int a, int b) {
+   return a>b;
+}
+
+void kthLargestElement(int array[], int n, int k) {
+   sort(array, array+n, compare);
+
+   for (int i = 0; i < k; i++)    //largest to kth largest element
+      cout << array[i] << " ";
+}
+
+int main() {
+   int array[] = {1, 23, 12, 9, 30, 2, 50, 63, 87, 12, 45, 21};
+   int n = 12;
+   int k = 4;
+   kthLargestElement(array, n, k);
+}
