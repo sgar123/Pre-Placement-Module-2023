@@ -1,0 +1,19 @@
+class Solution {
+public:
+    vector<int> array;
+    vector<int> original;
+    Solution(vector<int>& nums) : original(nums), array(nums) {}
+    
+    /** Resets the array to its original configuration and return it. */
+    vector<int> reset() {
+        return original;
+    }
+    
+    /** Returns a random shuffling of the array. */
+    vector<int> shuffle() {
+        if(array.size() > 0){
+            swap(array[rand() % array.size()],array[rand() % array.size()]);
+        }
+        return array;
+    }
+};
