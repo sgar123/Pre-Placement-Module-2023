@@ -1,0 +1,25 @@
+
+class Solution {
+public:
+    ListNode *getIntersectionNode(ListNode *h1, ListNode *h2) {
+        stack<ListNode*> s1,s2;
+        //Iterate List 1 and push all the elements of List 1 into S1 and similarly push all the elements of List 2 in S2.
+        while(h1!=NULL){
+            s1.push(h1);
+            h1=h1->next;
+        }
+         while(h2!=NULL){
+            s2.push(h2);
+            h2=h2->next;
+        }
+        //Now update the answer and start popping from the stack till top of both the stacks are same.
+        ListNode* ans =NULL;
+        while(!s1.empty() and !s2.empty() and s1.top()==s2.top()){
+            ans= s1.top();
+            s1.pop();
+            s2.pop();
+        }
+        return ans;
+    }
+    
+};
