@@ -1,0 +1,35 @@
+class Solution {
+public:
+    int numDecodings(string s) 
+    {
+        int count = 0;
+        queue<int> q;
+        q.push(0);
+        int d = 0;
+        while (!q.empty())
+        {
+            int d = 0;
+            int i = q.front();
+            q.pop();
+            for (; i<s.length(); i++)
+            {
+                d *= 10;
+                d += s[i] -'0';
+                if (d > 0 &&  d < 27)
+                {
+                    if (i+1 == s.length())
+                    {
+                        count++;
+                    }
+                    else
+                        q.push(i+1);
+                }
+                else
+                    break;
+            }
+            
+        }
+        return count;
+        
+    }
+};
